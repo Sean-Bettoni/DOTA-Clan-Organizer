@@ -17,7 +17,7 @@ function HeaderText() {
     <Spacer />
 
     <Box textAlign='start'/>
-    <Heading justifyContent='flex-start' fontSize='7xl'fontFamily='sans-serif' >
+    <Heading justifyContent='flex-start' fontSize='7xl'fontFamily='Fascinate Inline' >
     Circle Of Life Clan Website
     </Heading>
     <Spacer />

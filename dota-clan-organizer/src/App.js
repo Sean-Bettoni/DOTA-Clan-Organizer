@@ -12,14 +12,18 @@ import SessionCreator from './pages/sessionCreator';
 function App() {
   return (
     <ChakraProvider>
+      <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg'
+      bgSize='100%'
+      backgroundRepeat='no-repeat'
+      >
       <HeaderText/>
-      <Signup/>
+      <Login/>
+      </Box>
     </ChakraProvider>
   );
 }
 
 export default App;
-
 
 // Similar to the index.js file although in this you can wrap multiple elements inside a <div> </div> 
 
