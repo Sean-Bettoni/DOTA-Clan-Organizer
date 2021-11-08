@@ -1,19 +1,14 @@
 import React from 'react';
-import { Flex, Image } from '@chakra-ui/react';
-import backgroundPicture from '../photos/forest.webp';
+import { Image } from '@chakra-ui/react';
+import backgroundPicture from '../photos/backgroundDOTA-resized.jpg';
 
 const coverphoto = backgroundPicture;
 
 function Home() {
-    // The return statement contains something called "JSX"
-    // JSX is a syntax extension to Javascript that allows us to write HTML inside Javascript
-    // Expressions in JSX should be placed in curly braces {}
-    return (
-      <Flex>
-      <Image alignSelf='center' 
-             scr={coverphoto} />
-      </Flex>
-    );
+  return (
+    <Image alignSelf='center' scr={coverphoto} />
+  );
 }
 
 export default Home;
+

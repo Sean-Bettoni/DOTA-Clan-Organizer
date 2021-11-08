@@ -6,11 +6,11 @@ function NavBar() {
 
   // fetch user
 
-  // If no user is signed in
-  const user = undefined;
+  // // If no user is signed in
+  // const user = undefined;
 
-  // //If user is signed in
-  // const user = [];
+  //If user is signed in
+  const user = [];
 
   const buttons = [
     {
@@ -29,6 +29,15 @@ function NavBar() {
         // ..
         // If there is no user return LOGIN button
         return !Boolean(user);
+      }
+    },
+    {
+      title: 'CREATE',
+      to: "",
+      show: () =>{
+        // ..
+        // If there is a user return LOGOUT button
+        return Boolean(user);
       }
     },
     {
