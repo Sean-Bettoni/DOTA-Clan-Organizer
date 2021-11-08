@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Image } from '@chakra-ui/react';
-import backgroundPicture from '../photos/DOTAicon.webp';
+import backgroundPicture from '../photos/forest.webp';
 
 const coverphoto = backgroundPicture;
 
@@ -17,13 +17,3 @@ function Home() {
 }
 
 export default Home;
-
-
-// return (
-//   <Box>
-//   backgroundImage="url('../public/DOTAicon.webp')"
-//   backgroundPosition="center"
-//   backgroundRepeat="no-repeat"
-//   </Box>
-
-// );

@@ -22,7 +22,7 @@ const LoginArea = () => {
     <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
       <Box 
       borderWidth={4} px={4} padding='5'
-      bgColor='#A0A0A0'
+      bgColor='grey'
       opacity='0.75'
       width='full' maxWidth='500px' borderRadius={4} 
       textAlign='center'>
@@ -41,8 +41,8 @@ const LoginArea = () => {
 
 const LoginHeader = () => {
   return (
-    <Box textAlign='center'>
-      <Heading> Sign Into Your Account</Heading>
+    <Box textAlign='center' outline='true'>
+      <Heading fontFamily='Fascinate Inline'> Sign Into Your Account</Heading>
     </Box>
   )
 }
@@ -52,14 +52,14 @@ const LoginForm = () => {
     <Box marginY={8} textAlign='center'>
       <form>
         <FormControl>
-          <FormLabel>Email Address</FormLabel>
-          <Input type='email' placeholder='Enter your email address'/>
+          <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
+          <Input type='email' focusBorderColor="lime"/>
         </FormControl>
         <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type='password' placeholder='Enter your password'/>
+          <FormLabel fontFamily='Righteous'>Password</FormLabel>
+          <Input type='password' focusBorderColor="lime"/>
         </FormControl>
-        <Button backgroundColor='#00B51E' width='full'marginTop={4}>Sign In</Button>
+        <Button  _hover={{backgroundColor:'lime'}} width='full'marginTop={4} fontFamily='Righteous'>Sign In</Button>
       </form>
     </Box>
   )

@@ -10,13 +10,10 @@ import {
   Image,
 } from '@chakra-ui/react';
 
-// import { extendTheme } from "@chakra-ui/react";
 
 const Signup = () => {
     return (
-      <Box>
-        <SignupArea/>
-      </Box>  
+        <SignupArea/>  
     )
 }
 
@@ -24,7 +21,9 @@ const SignupArea = () => {
   return (
     <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
       <Box 
-      borderWidth={1} px={4} padding='5' 
+      borderWidth={4} px={4} padding='5'
+      bgColor='grey'
+      opacity='0.75' 
       width='full' maxWidth='500px' borderRadius={4} 
       textAlign='center'>
       <Image src='https://m.media-amazon.com/images/I/41fOv4JH2fL.jpg' 
@@ -43,7 +42,7 @@ const SignupArea = () => {
 const SignupHeader = () => {
   return (
     <Box textAlign='center'>
-      <Heading>Create An Account</Heading>
+      <Heading fontFamily='Fascinate Inline'>Create An Account</Heading>
     </Box>
   )
 }
@@ -53,20 +52,20 @@ const SignupForm = () => {
     <Box marginY={8} textAlign='center'>
       <form>
         <FormControl>
-          <FormLabel>Email Address</FormLabel>
-          <Input type='email' placeholder='Enter your Steam email address'/>
+          <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
+          <Input type='email' focusBorderColor="lime"/>
         </FormControl>
         
         <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type='password' placeholder='Enter your password'/>
+          <FormLabel fontFamily='Righteous'>Password</FormLabel>
+          <Input type='password' focusBorderColor="lime"/>
         </FormControl>
 
         <FormControl>
-        <FormLabel>Display Name</FormLabel>
-          <Input type='displayName' placeholder='Enter your DOTA name'/>
+        <FormLabel fontFamily='Righteous'>Display Name</FormLabel>
+          <Input type='displayName' focusBorderColor="lime"/>
         </FormControl>
-        <Button backgroundColor='#00B4BA' width='full'marginTop={4}>Sign In</Button>
+        <Button  _hover={{backgroundColor:'lime'}} width='full'marginTop={4} fontFamily='Righteous'>Sign In</Button>
       </form>
     </Box>
   )
