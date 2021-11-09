@@ -6,11 +6,11 @@ function NavBar() {
 
   // fetch user
 
-  // // If no user is signed in
-  // const user = undefined;
+  // If no user is signed in
+  const user = undefined;
 
   //If user is signed in
-  const user = [];
+  // const user = [];
 
   const buttons = [
     {

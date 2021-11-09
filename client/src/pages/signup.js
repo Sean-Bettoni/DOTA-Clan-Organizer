@@ -17,6 +17,7 @@ const Signup = () => {
     )
 }
 
+
 const SignupArea = () => {
   return (
     <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>

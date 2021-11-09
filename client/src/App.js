@@ -22,7 +22,7 @@ function App() {
       <NavBar/>  
       <Home/>
       
-      <Login/>
+      <Signup/>
       </Box>
     </ChakraProvider>
   );
