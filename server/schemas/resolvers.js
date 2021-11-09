@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-errors');
 const { SessionCard, User } = require('../models');
+const { signToken } = require("../utils/auth");
 
 // Resolvers is a functions that fulfills the queries defined in `typeDefs.js`
 // How blueprint will be fulfilled
@@ -10,15 +11,11 @@ const resolvers = {
       return await SessionCard.find({});
     }
   },
-  Mutation: {
-    login: async (parent, { email, username, password }) => {
-      
-      const email = await email.findOne({ email });
-      if (!email) {
-        throw new AuthenticationError('Incorrect Details');
-      }
 
-      const user = await User.findOne({ username });
+  // Defining which mutations the client is allowed to make
+  Mutation: {
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError('Incorrect Details');
       }
@@ -27,12 +24,16 @@ const resolvers = {
       if (!correctPassword) {
         throw new AuthenticationError('Incorrect Details');
       }
+
+      const token = signToken(user);
+      return { token, user };
     },
 
-    signUp: async (parent, { email, username, password }) => {
 
+    addUser: async (parent, { email, username, password }) => {
       const user = await User.create({ email, username, password });
-        return user;
+      const token = signToken(user);
+      return { token, user };
     },
 
     createSessionCard: async (parent, { gameType, requiredRoles, startTime }) => {

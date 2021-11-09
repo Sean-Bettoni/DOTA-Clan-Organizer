@@ -5,27 +5,37 @@ const { gql } = require('apollo-server-express');
 // Blueprint
 const typeDefs = gql`
   type SessionCard {
-    _id: ID!
     gameType: String!
     requiredRole: String!
     startTime: Number!
   }
 
   type User {
-    _id: ID!
-    name: String!
+    _id: ID
+    email: String!
+    username: String!
+    password: String!
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    activeSession: [SessionCard]
+    user(username: String!): User
+    login(email: String!, password: String!)
+
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    login(email: String!, password: String!): Auth
+    addUser(email: String!, username: String!, password: String!): Auth
+    createSessionCard(gameType: String!, requiredRole: String!, startTime: Number!): Auth
   }
 `;
-// type Query is defining what the front end is allowed to query for and what it gets back
+// type Query is used for getting data
+// type Mutation is used for changing data
 
 module.exports = typeDefs;
