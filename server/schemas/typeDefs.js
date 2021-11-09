@@ -4,17 +4,17 @@ const { gql } = require('apollo-server-express');
 // GraphQL equivalent of defining a model
 // Blueprint
 const typeDefs = gql`
-  type SessionCard {
-    gameType: String!
-    requiredRole: String!
-    startTime: Number!
-  }
-
   type User {
     _id: ID
     email: String!
     username: String!
     password: String!
+  }
+
+  type SessionCard {
+    gameType: String!
+    requiredRole: String!
+    startTime: String!
   }
 
   type Auth {
@@ -23,16 +23,14 @@ const typeDefs = gql`
   }
 
   type Query {
-    activeSession: [SessionCard]
+    activeSessions: [SessionCard]
     user(username: String!): User
-    login(email: String!, password: String!)
-
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(email: String!, username: String!, password: String!): Auth
-    createSessionCard(gameType: String!, requiredRole: String!, startTime: Number!): Auth
+    createSessionCard(gameType: String!, requiredRole: String!, startTime: String!): Auth
   }
 `;
 // type Query is used for getting data

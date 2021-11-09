@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import ActiveSessions from './pages/ActiveSessions';
+// import Footer from './components/Footer';
+// import ActiveSessions from './pages/ActiveSessions';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
@@ -42,7 +42,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <ChakraProvider>
+      <ChakraProvider>
+        
         <NavBar/>
         <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>
 
@@ -63,13 +64,21 @@ function App() {
         </Route>
 
         </Box>
-      </ChakraProvider>
+      
+    </ChakraProvider>
     </Router>
   </ApolloProvider>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
 
 // Similar to the index.js file although in this you can wrap multiple elements 
 // inside a <div> </div>. Chakra ui Box element is a div
