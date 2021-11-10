@@ -1,14 +1,47 @@
 import React from 'react';
-import { Image } from '@chakra-ui/react';
-import backgroundPicture from '../photos/backgroundDOTA-resized.jpg';
+import { 
+  Grid, 
+  Box,
 
-const coverphoto = backgroundPicture;
+} from '@chakra-ui/react';
+// import backgroundPicture from '../photos/backgroundDOTA-resized.jpg';
 
-function Home() {
+// const coverphoto = backgroundPicture;
+// <Image alignSelf='center' scr={coverphoto} />
+
+const Home = () => {
   return (
-    <Image alignSelf='center' scr={coverphoto} />
-  );
+      <HomeGrid/>
+  )
 }
+
+const HomeGrid = () => {
+  return (
+    <Grid 
+    templateColumns="repeat(5, 1fr)" 
+    gap={6}
+    borderWidth={4}
+    px={4}
+    padding='5'
+    bgColor='grey'
+    opacity='0.75'
+    width='full' maxWidth='500px' borderRadius={4} 
+    >
+          <Box w="100%" h="10" bg="blue.500" />
+          <Box w="100%" h="10" bg="blue.500" />
+          <Box w="100%" h="10" bg="blue.500" />
+          <Box w="100%" h="10" bg="blue.500" />
+          <Box w="100%" h="10" bg="blue.500" />
+    </Grid>
+  )
+}
+
+
+
+
+
+
+
 
 export default Home;
 

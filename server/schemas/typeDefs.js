@@ -13,7 +13,7 @@ const typeDefs = gql`
 
   type SessionCard {
     gameType: String!
-    requiredRole: String!
+    requiredRoles: String!
     startTime: String!
   }
 
@@ -30,7 +30,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(email: String!, username: String!, password: String!): Auth
-    createSessionCard(gameType: String!, requiredRole: String!, startTime: String!): Auth
+    createSessionCard(gameType: String!, requiredRoles: String!, startTime: String!): Auth
   }
 `;
 // type Query is used for getting data

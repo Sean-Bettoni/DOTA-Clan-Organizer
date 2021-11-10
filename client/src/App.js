@@ -43,10 +43,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <ChakraProvider>
-        
+      <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>  
         <NavBar/>
-        <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>
-
+        
         <Route exact path="/">
           <Home/>
         </Route>
@@ -62,9 +61,7 @@ function App() {
         <Route exact path="/sessioncreator">
           <SessionCreator/>
         </Route>
-
-        </Box>
-      
+      </Box>  
     </ChakraProvider>
     </Router>
   </ApolloProvider>

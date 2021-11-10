@@ -1,11 +1,13 @@
 import React from 'react';
 import { Box, Flex, Button, Spacer, Heading } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import Auth from '../../utils/auth';
+
 
 function NavBar() {
 
   // fetch user
-
+  if 
   // If no user is signed in
   const user = undefined;
 
@@ -15,7 +17,7 @@ function NavBar() {
   const buttons = [
     {
       title: 'SIGN UP',
-      to: "", //Page end location
+      to: "/signup", //Page end location
       show: () => {
         // logic to return false
         return !Boolean(user);
@@ -24,7 +26,7 @@ function NavBar() {
     },
     {
       title: 'LOGIN',
-      to: "",
+      to: "/home",
       show: () =>{
         // ..
         // If there is no user return LOGIN button
@@ -33,7 +35,7 @@ function NavBar() {
     },
     {
       title: 'CREATE',
-      to: "",
+      to: "/sessioncreator",
       show: () =>{
         // ..
         // If there is a user return LOGOUT button
@@ -42,7 +44,7 @@ function NavBar() {
     },
     {
       title: 'LOGOUT',
-      to: "",
+      to: "/login",
       show: () =>{
         // ..
         // If there is a user return LOGOUT button
