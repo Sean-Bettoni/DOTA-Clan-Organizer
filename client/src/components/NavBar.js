@@ -28,7 +28,8 @@ const NavBar = () => {
                 backgroundColor='transparent' 
                 _hover={{backgroundColor:'lime'}} 
                 fontFamily='Fascinate Inline' 
-                padding='2' height='40px'>
+                padding='2' height='40px'
+                onClick={logout}>
                 LOGOUT
               </Button>
               
@@ -45,7 +46,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Button 
+            <Button 
                 justifySelf='flex-start' 
                 backgroundColor='transparent' 
                 _hover={{backgroundColor:'lime'}} 
