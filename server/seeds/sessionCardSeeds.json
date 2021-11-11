@@ -1,0 +1,32 @@
+[
+    {
+      "gameType": "Turbo All Pick",
+      "requiredRoles": "Pos 1,2,5",
+      "startTime": "1244pm"
+    },
+    {
+      "gameType": "Ranked All Pick",
+      "requiredRoles": "two supports",
+      "startTime": "330pm"
+    },    
+    {
+      "gameType": "Weekend Cup",
+      "requiredRoles": "mid carry",
+      "startTime": "825am"
+    },
+    {
+      "gameType": "Turbo All Pick",
+      "requiredRoles": "soft support",
+      "startTime": "400pm"
+    },
+    {
+      "gameType": "Turbo All Pick",
+      "requiredRoles": "initiator",
+      "startTime": "1045am"
+    },    
+    {
+      "gameType": "Ranked All Pick",
+      "requiredRoles": "Any role",
+      "startTime": "130pm"
+    }
+]    

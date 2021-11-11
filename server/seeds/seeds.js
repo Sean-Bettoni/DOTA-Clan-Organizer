@@ -8,18 +8,6 @@ db.once('open', async () => {
     await SessionCard.deleteMany({});
     await User.deleteMany({});
     await User.create(userSeeds);
-
-    for (let i = 0; i < sessionCardSeeds.length; i++) {
-      const { _id, thoughtAuthor } = await Thought.create(sessionCardSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        {
-          $addToSet: {
-            thoughts: _id,
-          },
-        }
-      );
-    }
   }
 
   catch (err) {
@@ -30,3 +18,16 @@ db.once('open', async () => {
   console.log('Session Card Seeded!');
   process.exit(0);
 });
+
+
+// for (let i = 0; i < sessionCardSeeds.length; i++) {
+//   const { _id, User } = await SessionCard.create(sessionCardSeeds[i]);
+//   const user = await User.findOneAndUpdate(
+//     { username: thoughtAuthor },
+//     {
+//       $addToSet: {
+//         thoughts: _id,
+//       },
+//     }
+//   );
+// }

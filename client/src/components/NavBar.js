@@ -1,88 +1,85 @@
 import React from 'react';
-import { Box, Flex, Button, Spacer, Heading } from '@chakra-ui/react';
+import { Box, Flex, Button, Heading, Spacer } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 
-function NavBar() {
+const NavBar = () => {
+ 
+    const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
-  // fetch user
-  if 
-  // If no user is signed in
-  const user = undefined;
-
-  //If user is signed in
-  // const user = [];
-
-  const buttons = [
-    {
-      title: 'SIGN UP',
-      to: "/signup", //Page end location
-      show: () => {
-        // logic to return false
-        return !Boolean(user);
-
-      }
-    },
-    {
-      title: 'LOGIN',
-      to: "/home",
-      show: () =>{
-        // ..
-        // If there is no user return LOGIN button
-        return !Boolean(user);
-      }
-    },
-    {
-      title: 'CREATE',
-      to: "/sessioncreator",
-      show: () =>{
-        // ..
-        // If there is a user return LOGOUT button
-        return Boolean(user);
-      }
-    },
-    {
-      title: 'LOGOUT',
-      to: "/login",
-      show: () =>{
-        // ..
-        // If there is a user return LOGOUT button
-        return Boolean(user);
-      }
-    }
-  ]
-
-
-  return ( 
-    <Flex w='100%' h="100" bg="" textColor='grey.800'>
+  return (
+    <Flex w='100%' textColor='grey.800' >
     <ColorModeSwitcher/>
-    <Box />
-    {buttons.map(button => {
-      // If button is not showing, return null
-      if(!button.show()){
-        return null;
-      }
-      // Otherwise If button returns true, show button
-      return (
-        <Button variant='Link' justifySelf='flex-start' _hover={{backgroundColor:'lime'}} fontFamily='Fascinate Inline'>
-          {button.title}
-        </Button>
-      )
-    })}
-    
+    <Box textAlign='center' />
 
-    <Spacer />
+          {Auth.loggedIn() ? (
+            <>
+              <Link to="/home">
+                {Auth.login()}
+              </Link>
+              
+              <Button 
+                justifySelf='flex-start' 
+                backgroundColor='transparent' 
+                _hover={{backgroundColor:'lime'}} 
+                fontFamily='Fascinate Inline' 
+                padding='2' height='40px'>
+                LOGOUT
+              </Button>
+              
+              <Button 
+                justifySelf='flex-start' 
+                backgroundColor='transparent' 
+                _hover={{backgroundColor:'lime'}} 
+                fontFamily='Fascinate Inline' 
+                padding='2' height='40px'>
+              <Link to='/sessioncreator'>
+                CREATE
+              </Link> 
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button 
+                justifySelf='flex-start' 
+                backgroundColor='transparent' 
+                _hover={{backgroundColor:'lime'}} 
+                fontFamily='Fascinate Inline' 
+                padding='2' height='40px'>
+              <Link to="/login">
+                LOGIN
+              </Link>
+            </Button>
 
-    <Box textAlign='center'/>
-    <Heading justifyContent='flex-start' fontSize='7xl' fontFamily='Fascinate Inline' paddingRight='10%' textDecorationLine='underline'>
-    Circle Of Life Clan Website
-    </Heading>
-    <Spacer />
-    
-    <Box justifySelf='flex-end'p='10px'/>
-    </Flex> 
+            <Button 
+                justifySelf='flex-start' 
+                backgroundColor='transparent' 
+                _hover={{backgroundColor:'lime'}} 
+                fontFamily='Fascinate Inline' 
+                padding='2' height='40px'>
+              <Link to="/signup">
+                SIGNUP
+              </Link>
+            </Button>
+            </>
+          )}
+        <Spacer/>
+          <Heading justifyContent='flex-start' 
+            fontSize='7xl' fontFamily='Fascinate Inline' 
+            paddingRight='10%' 
+            textDecorationLine='underline'>
+            Circle Of Life Clan Website
+          </Heading>
+        <Spacer/>
+        <Box justifySelf='flex-end'p='10px'/>
+
+    </Flex>
   );
-}
+};
 
 export default NavBar;

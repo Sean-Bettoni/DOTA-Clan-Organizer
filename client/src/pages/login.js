@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Box, 
   Flex, 
@@ -9,18 +8,55 @@ import {
   Button,
   Image
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+
+import React, { useState } from 'react';
 
 
-const Login = () => {
-    return (
-        <LoginArea/>
-    )
-}
+const Login = (props) => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
-const LoginArea = () => {
-  return (
-    <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
-      <Box 
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+
+  // submit form
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  console.log(formState);
+  try {
+    const { data } = await login({
+      variables: { ...formState },
+    });
+
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+
+  // clear form values
+  setFormState({
+    email: '',
+    password: '',
+  });
+};
+
+
+return (
+  <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
+     <Box 
       borderWidth={4} px={4} padding='5'
       bgColor='grey'
       opacity='0.75'
@@ -32,38 +68,72 @@ const LoginArea = () => {
       my={6}
       borderRadius='full'
       />
-      <LoginHeader />
-      <LoginForm />
-      </Box>
-    </Flex>
-  )
-}
+      <div className="card">
+        <Box textAlign='center' outline='true'>
+          <Heading fontFamily='Fascinate Inline'> Sign Into Your Account</Heading>
+        </Box>
+        <div className="card-body">
+          {data ? (
+            <p>
+              Success! Taking you{' '}
+              <Link to="/home">to the homepage.</Link>
+            </p>
+          ) : (
+            <Box marginY={8} textAlign='center'>
+            <form onSubmit={handleFormSubmit}>
 
-const LoginHeader = () => {
-  return (
-    <Box textAlign='center' outline='true'>
-      <Heading fontFamily='Fascinate Inline'> Sign Into Your Account</Heading>
-    </Box>
-  )
-}
+              <FormControl>
+              <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
+              <Input
+                className="form-input"
+                focusBorderColor="lime"
+                fontFamily='Righteous'
+                placeholder="Your email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              />
+              </FormControl>
 
-const LoginForm = () => {
-  return (
-    <Box marginY={8} textAlign='center'>
-      <form>
-        <FormControl>
-          <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
-          <Input type='email' focusBorderColor="lime"/>
-        </FormControl>
-        <FormControl>
-          <FormLabel fontFamily='Righteous'>Password</FormLabel>
-          <Input type='password' focusBorderColor="lime"/>
-        </FormControl>
-        <Button  _hover={{backgroundColor:'lime'}} width='full'marginTop={4} fontFamily='Righteous'>Sign In</Button>
-      </form>
+              <FormControl>
+              <FormLabel fontFamily='Righteous'>Password</FormLabel>
+              <Input
+                className="form-input"
+                focusBorderColor="lime"
+                fontFamily='Righteous'
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+              </FormControl>
+
+              <Button
+                _hover={{backgroundColor:'lime'}}
+                width='full'marginTop={4}
+                style={{ cursor: 'pointer' }}
+                type="submit"
+              >
+                Submit
+              </Button>
+
+            </form>
+            </Box>
+          )}
+
+          
+          {error && (
+            <div my='3' p='3' bg-='red' text='white'>
+              {error.message}
+            </div>
+          )}
+        </div>
+      </div>
     </Box>
-  )
-}
+  </Flex>
+);
+};
 
 export default Login;
-

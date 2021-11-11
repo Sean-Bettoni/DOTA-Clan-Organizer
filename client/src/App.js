@@ -46,12 +46,12 @@ function App() {
       <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>  
         <NavBar/>
         
-        <Route exact path="/">
-          <Home/>
-        </Route>
-
         <Route exact path="/login">
           <Login/>
+        </Route>
+
+        <Route exact path="/home">
+          <Home/>
         </Route>
 
         <Route exact path="/signup">
