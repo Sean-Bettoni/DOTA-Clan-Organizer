@@ -32,108 +32,110 @@ const Login = (props) => {
   };
 
 
-  // submit form
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
-  console.log(formState);
-  try {
-    const { data } = await login({
-      variables: { ...formState },
+    // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
     });
-
-    Auth.login(data.login.token);
-  } catch (e) {
-    console.error(e);
-  }
-
-  // clear form values
-  setFormState({
-    email: '',
-    password: '',
-  });
-};
+  };
 
 
-return (
-  <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
-     <Box 
-      borderWidth={4} px={4} padding='5'
-      bgColor='grey'
-      opacity='0.75'
-      width='full' maxWidth='500px' borderRadius={4} 
-      textAlign='center'>
-      <Image src='https://m.media-amazon.com/images/I/41fOv4JH2fL.jpg' 
-      boxSize='300px' 
-      mx='auto'
-      my={6}
-      borderRadius='full'
-      />
-      <div className="card">
-        <Box textAlign='center' outline='true'>
-          <Heading fontFamily='Fascinate Inline'> Sign Into Your Account</Heading>
-        </Box>
-        <div className="card-body">
-          {data ? (
-            <p>
-              Success! Taking you{' '}
-              <Link to="/home">to the homepage.</Link>
-            </p>
-          ) : (
-            <Box marginY={8} textAlign='center'>
-            <form onSubmit={handleFormSubmit}>
-
+  return (
+    <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
+      <Box 
+        borderWidth={4} px={4} padding='5'
+        bgColor='grey'
+        opacity='0.75'
+        width='full' maxWidth='500px' borderRadius={4} 
+        textAlign='center'>
+        <Image src='https://m.media-amazon.com/images/I/41fOv4JH2fL.jpg' 
+        boxSize='300px' 
+        mx='auto'
+        my={6}
+        borderRadius='full'
+        />
+        <div className="card">
+          <Box textAlign='center' outline='true'>
+            <Heading fontFamily='Fascinate Inline'> Sign Into Your Account</Heading>
+          </Box>
+          <div className="card-body">
+            {data ? (
+              <p>
+                Success! Taking you{' '}
+                <Link to="/home">to the homepage.</Link>
+              </p>
+            ) : (
+              
               <FormControl>
-              <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
-              <Input
-                className="form-input"
-                focusBorderColor="lime"
-                fontFamily='Righteous'
-                placeholder="Your email"
-                name="email"
-                type="email"
-                value={formState.email}
-                onChange={handleChange}
-              />
+              <form onSubmit={handleFormSubmit}>
+
+              <Box marginY={8} textAlign='center'>
+                <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
+                <Input
+                  className="form-input"
+                  focusBorderColor="lime"
+                  fontFamily='Righteous'
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                
+
+                
+                <FormLabel fontFamily='Righteous'>Password</FormLabel>
+                <Input
+                  className="form-input"
+                  focusBorderColor="lime"
+                  fontFamily='Righteous'
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                
+
+                <Button
+                  _hover={{backgroundColor:'lime'}}
+                  width='full'marginTop={4}
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </Button>
+                </Box>
+              </form>
               </FormControl>
+              
+            )}
 
-              <FormControl>
-              <FormLabel fontFamily='Righteous'>Password</FormLabel>
-              <Input
-                className="form-input"
-                focusBorderColor="lime"
-                fontFamily='Righteous'
-                placeholder="******"
-                name="password"
-                type="password"
-                value={formState.password}
-                onChange={handleChange}
-              />
-              </FormControl>
-
-              <Button
-                _hover={{backgroundColor:'lime'}}
-                width='full'marginTop={4}
-                style={{ cursor: 'pointer' }}
-                type="submit"
-              >
-                Submit
-              </Button>
-
-            </form>
-            </Box>
-          )}
-
-          
-          {error && (
-            <div my='3' p='3' bg-='red' text='white'>
-              {error.message}
-            </div>
-          )}
+            
+            {error && (
+              <div my='3' p='3' bg-='red' text='white'>
+                {error.message}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </Box>
-  </Flex>
-);
+      </Box>
+    </Flex>
+  );
 };
 
 export default Login;

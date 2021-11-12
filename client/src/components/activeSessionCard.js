@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { Box } from '@chakra-ui/react';
 import { CREATE_SESSION_CARD } from '../utils/mutations';
-import { QUERY_GETSESSIONCARD } from '../utils/queries';
+import { QUERY_GETSESSIONCARD, QUERY_GETUSER } from '../utils/queries';
 import { Text } from '@chakra-ui/react';
 import Auth from '../utils/auth';
 
-// QUERY_GETUSER
+
 
 const ActiveSessionCard = () => {
+  
   const [var1, setvar1] = useState('');
-  // const user = useMutation(QUERY_GETUSER)
+  const user = useMutation(QUERY_GETUSER)
+
 
   const [createSessionCard, { error }] = useMutation(CREATE_SESSION_CARD, {
     update(cache, { data: { createSessionCard } }) {
@@ -32,6 +34,7 @@ const ActiveSessionCard = () => {
   });
 
 
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -48,6 +51,7 @@ const ActiveSessionCard = () => {
       console.error(err);
     }
   };
+
 
   //   const handleChange = (event) => {
   //     const { name, value } = event.target;

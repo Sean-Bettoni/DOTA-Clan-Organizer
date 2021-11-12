@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChakraProvider, Box } from '@chakra-ui/react';
+// 
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -31,6 +32,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
@@ -40,40 +42,37 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
+  <ApolloProvider client={client}>
+    <Router>
       <ChakraProvider>
-      <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>  
-        <NavBar/>
-        
-        <Route exact path="/login">
-          <Login/>
-        </Route>
+        <Box backgroundImage='https://i.pinimg.com/originals/e7/03/1a/e7031acca9a34bc69a460796feb5194d.jpg' bgSize='100%' backgroundRepeat='no-repeat'>  
+          
+          <NavBar/>
+          
+          <Route exact path="/login">
+            <Login/>
+          </Route>
 
-        <Route exact path="/home">
-          <Home/>
-        </Route>
+          <Route exact path="/home">
+            <Home/>
+          </Route>
 
-        <Route exact path="/signup">
-          <Signup/>
-        </Route>
+          <Route exact path="/signup">
+            <Signup/>
+          </Route>
 
-        <Route exact path="/sessioncreator">
-          <SessionCreator/>
-        </Route>
-      </Box>  
-    </ChakraProvider>
+          <Route exact path="/sessioncreator">
+            <SessionCreator/>
+          </Route>
+
+        </Box>  
+      </ChakraProvider>
     </Router>
   </ApolloProvider>
   );
 }
 
 export default App;
-
-
-
-
-
 
 
 
