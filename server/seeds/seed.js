@@ -5,9 +5,12 @@ const sessionCardSeeds = require('./sessionCardSeeds.json');
 
 db.once('open', async () => {
   try {
-    await SessionCard.deleteMany({});
+    // await SessionCard.deleteMany({});
     await User.deleteMany({});
+
+    await SessionCard.create(sessionCardSeeds);
     await User.create(userSeeds);
+    
   }
 
   catch (err) {
@@ -15,19 +18,6 @@ db.once('open', async () => {
     process.exit(1);
   }
 
-  console.log('Session Card Seeded!');
+  console.log('All Done!!');
   process.exit(0);
 });
-
-
-// for (let i = 0; i < sessionCardSeeds.length; i++) {
-//   const { _id, User } = await SessionCard.create(sessionCardSeeds[i]);
-//   const user = await User.findOneAndUpdate(
-//     { username: thoughtAuthor },
-//     {
-//       $addToSet: {
-//         thoughts: _id,
-//       },
-//     }
-//   );
-// }

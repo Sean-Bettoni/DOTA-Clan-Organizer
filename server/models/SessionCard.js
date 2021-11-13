@@ -20,5 +20,3 @@ const SessionCardSchema = new Schema(
 const SessionCard = model('SessionCard', SessionCardSchema);
 
 module.exports = SessionCard;
-
-// Changed startTime type from Number to String

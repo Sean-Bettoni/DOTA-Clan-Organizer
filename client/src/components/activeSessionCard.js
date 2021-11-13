@@ -1,97 +1,121 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { useMutation } from '@apollo/client';
-import { Box } from '@chakra-ui/react';
+import { Box, FormLabel, Form } from '@chakra-ui/react';
 import { CREATE_SESSION_CARD } from '../utils/mutations';
-import { QUERY_GETSESSIONCARD, QUERY_GETUSER } from '../utils/queries';
-import { Text } from '@chakra-ui/react';
-import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 
 
-
-const ActiveSessionCard = () => {
+// const ActiveSessionCard = ({ gameType, requiredRoles, startTime = [] }) => {
+const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
   
-  const [var1, setvar1] = useState('');
-  const user = useMutation(QUERY_GETUSER)
+  const createSessionCard = useMutation(CREATE_SESSION_CARD);
 
+  if (!gameType) {
+    return <Box>
+    <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
+      There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
+    </Box>
+  }
+  // if (!requiredRoles) {
+  //   return <h3>No Required Roles</h3>
+  // }
 
-  const [createSessionCard, { error }] = useMutation(CREATE_SESSION_CARD, {
-    update(cache, { data: { createSessionCard } }) {
-      
-    try {
-        const { activeSessions } = cache.readQuery({ query: QUERY_GETSESSIONCARD });
-
-        cache.writeQuery({
-          query: QUERY_GETSESSIONCARD,
-          data: { cardInfo: { createSessionCard, ...activeSessions} },
-        });
-    } 
-
-    catch (e) {
-        console.error(e);
-    }
-    }
-  });
-
-
-  
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await createSessionCard({
-        variables: {
-            var1,
-            // user
-        },
-      });
-
-      setvar1('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
-
-  //     if (name === 'thoughtText' && value.length <= 280) {
-  //         setvar1(value);
-  //         setCount1(value.length);
-  //     }
-  //   };
+  // if (!startTime) {
+  //   return <h3>No Start Time</h3>
+  // }
 
   return (
-    <div>
-      {Auth.loggedIn() ? (
-        <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <Box 
-              width='full'maxWidth='400px' 
-              borderWidth={4} borderRadius={4} outline='true'
-              h='500px' opacity='0.75'px={4} bgColor='grey'
-              padding='5' justifyContent='space-evenly' flexWrap='wrap'/>
-        
-            {error && (
-              <div bg='red' text='white' p='3'>
-                {error.message}
-              </div>
-            )}
-          </form>
-        </>
-      ) : (
-        <Text fontFamily='Fascinate Inline' fontSize='3xl'>
-          You need to be logged in to view this. Please{' '}
-          <Link to="/login">LOGIN</Link> or <Link to="/signup">SIGNUP.</Link>
-        </Text>
-      )}
-    </div>
-  );
-};
+    <Box>
+      <Form>
 
+        <Box>
+        <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
+          <textarea name='Game Type' value={createSessionCard.gameType}>
+          </textarea>
+        </Box>
+
+        <Box>
+        <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
+          <textarea name='Required Roles' value={createSessionCard.requiredRoles}>
+          </textarea>
+        </Box>
+
+        <Box>
+        <FormLabel fontFamily='Righteous'>Start Time</FormLabel>
+          <textarea name='Start Time' value={createSessionCard.startTime}>
+          </textarea>
+        </Box>
+
+      </Form>
+    </Box>
+  )
+};
 export default ActiveSessionCard;
 
+
+
+// const ActiveSessionCard = () => {
+  
+//   const [formState, setFormState] = useState({
+//     gameType: '',
+//     requiredRoles:'',
+//     startTime:''
+//   });
+
+//   const createSessionCard = useMutation(CREATE_SESSION_CARD);
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+
+//     try {
+//       const { data } = createSessionCard({
+//         variables: { ...formState },
+//       });
+
+//       window.location.reload();
+//     } 
+//     catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+
+//     if (name === 'gameTpye' && value.length <= 280) {
+//       setFormState({ ...formState, [name]: value }); 
+//     } 
+//     else if (name !== 'gameTpye') {
+//       setFormState({ ...formState, [name]: value });
+//     }
+//   };
+
+//   return (
+//     <Box>
+//       <Form onSubmit={handleFormSubmit}>
+
+//         <Box>
+//         <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
+//           <textarea name='Game Type' value={formState.gameType} onChange={handleChange}>
+//           </textarea>
+//         </Box>
+
+//         <Box>
+//         <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
+//           <textarea name='Required Roles' value={formState.requiredRoles} onChange={handleChange}>
+//           </textarea>
+//         </Box>
+
+//         <Box>
+//         <FormLabel fontFamily='Righteous'>Start Time</FormLabel>
+//           <textarea name='Start Time' value={formState.startTime} onChange={handleChange}>
+//           </textarea>
+//         </Box>
+
+//       </Form>
+//     </Box>
+//   )
+// };
+
+// export default ActiveSessionCard;

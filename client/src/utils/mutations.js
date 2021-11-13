@@ -34,3 +34,4 @@ export const CREATE_SESSION_CARD = gql`
       }
     }
 `;
+

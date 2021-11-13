@@ -10,6 +10,7 @@ const resolvers = {
       // Get and return all documents from the SessionCard collection
       return await SessionCard.find({});
     },
+    
     user: async (parent, {username}) => {
       return await User.findOne({username});
     }, 
