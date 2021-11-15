@@ -1,28 +1,27 @@
 import React from 'react';
-import { useMutation } from '@apollo/client';
+// import { useMutation } from '@apollo/client';
 import { Box, FormLabel, Form } from '@chakra-ui/react';
-import { CREATE_SESSION_CARD } from '../utils/mutations';
+// import { CREATE_SESSION_CARD } from '../utils/mutations';
 import { Link } from 'react-router-dom';
+
+
+import { useQuery } from '@chakra-ui/media-query';
+import { QUERY_GETSESSIONCARD } from '../utils/queries'
+
 
 
 // const ActiveSessionCard = ({ gameType, requiredRoles, startTime = [] }) => {
 const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
   
-  const createSessionCard = useMutation(CREATE_SESSION_CARD);
+  const cardInfo = useQuery(QUERY_GETSESSIONCARD);
 
-  if (!gameType) {
+  if (!cardInfo) {
     return <Box>
     <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
       There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
     </Box>
   }
-  // if (!requiredRoles) {
-  //   return <h3>No Required Roles</h3>
-  // }
 
-  // if (!startTime) {
-  //   return <h3>No Start Time</h3>
-  // }
 
   return (
     <Box>
@@ -30,19 +29,19 @@ const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
 
         <Box>
         <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
-          <textarea name='Game Type' value={createSessionCard.gameType}>
+          <textarea name='Game Type' value={cardInfo.gameType}>
           </textarea>
         </Box>
 
         <Box>
         <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
-          <textarea name='Required Roles' value={createSessionCard.requiredRoles}>
+          <textarea name='Required Roles' value={cardInfo.requiredRoles}>
           </textarea>
         </Box>
 
         <Box>
         <FormLabel fontFamily='Righteous'>Start Time</FormLabel>
-          <textarea name='Start Time' value={createSessionCard.startTime}>
+          <textarea name='Start Time' value={cardInfo.startTime}>
           </textarea>
         </Box>
 
@@ -51,6 +50,74 @@ const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
   )
 };
 export default ActiveSessionCard;
+
+
+
+
+
+
+
+
+
+// This code displays no session message
+
+// // const ActiveSessionCard = ({ gameType, requiredRoles, startTime = [] }) => {
+//   const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
+  
+//     // const createSessionCard = useMutation(CREATE_SESSION_CARD);
+  
+//     if (!gameType) {
+//       return <Box>
+//       <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
+//         There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
+//       </Box>
+//     }
+//     // if (!requiredRoles) {
+//     //   return <h3>No Required Roles</h3>
+//     // }
+  
+//     // if (!startTime) {
+//     //   return <h3>No Start Time</h3>
+//     // }
+  
+//     return (
+//       <Box>
+//         <Form>
+  
+//           <Box>
+//           <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
+//             <textarea name='Game Type' value={createSessionCard.gameType}>
+//             </textarea>
+//           </Box>
+  
+//           <Box>
+//           <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
+//             <textarea name='Required Roles' value={createSessionCard.requiredRoles}>
+//             </textarea>
+//           </Box>
+  
+//           <Box>
+//           <FormLabel fontFamily='Righteous'>Start Time</FormLabel>
+//             <textarea name='Start Time' value={createSessionCard.startTime}>
+//             </textarea>
+//           </Box>
+  
+//         </Form>
+//       </Box>
+//     )
+//   };
+//   export default ActiveSessionCard;
+  
+  
+  
+  
+
+
+
+
+
+
+
 
 
 
