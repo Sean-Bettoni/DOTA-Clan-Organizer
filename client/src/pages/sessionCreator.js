@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React from 'react';
 import { 
   Box, 
   Flex, 
@@ -8,8 +8,8 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
-import { useMutation } from '@apollo/client';
-import { CREATE_SESSION_CARD } from '../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import { CREATE_SESSION_CARD } from '../utils/mutations';
 
 
 
