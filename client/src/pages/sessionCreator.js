@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { CREATE_SESSION_CARD } from '../utils/mutations';
+import { QUERY_GETSESSIONCARD } from '../utils/queries';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 import { 
   Box, 
   Flex, 
@@ -8,10 +13,6 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
-// import { useMutation } from '@apollo/client';
-// import { CREATE_SESSION_CARD } from '../utils/mutations';
-
-
 
 
 
@@ -22,6 +23,7 @@ const SessionCreator = () => {
       <CreatorCard/>
     )
 }
+
 
 const CreatorCard = () => {
   return (
@@ -39,6 +41,8 @@ const CreatorCard = () => {
   )
 }
 
+
+
 const SessionHeader = () => {
   return (
     <Box textAlign='center' outline='true'>
@@ -47,30 +51,140 @@ const SessionHeader = () => {
   )
 }
 
-const SessionForm = () => {
+
+
+
+const SessionForm = ({ SessionCardId }) => {
+  const [formState, setFormState] = useState({
+    gameType: '',
+    requiredRoles: '',
+    startTime: '',
+  });
+
+
+
+  const [createSessionCard, {error}] = useMutation(CREATE_SESSION_CARD, {
+    update(cache, { data: { createSessionCard } }) {
+      try {
+        const { activeSessions } = cache.readQuery({
+          query: QUERY_GETSESSIONCARD,
+          variables: { SessionCardId } });
+          cache.writeQuery({
+            query: QUERY_GETSESSIONCARD,
+            data: { activeSessions: [createSessionCard, ...activeSessions] },
+            variables: {SessionCardId}
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      },
+  });
+  
+  
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    // console.log(formState);
+
+    try {
+      const { data } = await createSessionCard({
+        variables: { ...formState },
+      });
+    } 
+    catch (e) {
+      console.error(e);
+    }
+  };
+
+ 
+
   return (
-    <Box marginY={8} textAlign='center'>
-      <form>
+    // <Box>
+    // {data ? (
+    //   <p>
+    //   Session Created! Taking you{' '}
+    //   <Link to="/home">to the homepage.</Link>
+    //   </p>
+    // ) : (
+    <Box>
+      {Auth.loggedIn() ? ( 
+      <Box marginY={8} textAlign='center'>
+      <form onSubmit={handleFormSubmit}>
+
         <FormControl>
           <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
-          <Input type='game' focusBorderColor="lime"/>
+          <Input 
+          className="form-input"
+          focusBorderColor="lime"
+          placeholder="What Game Mode Will You Be Playing?"
+          name="gameType"
+          type="text"
+          value={formState.gameType}
+          onChange={handleChange}
+          />
         </FormControl>
 
         <FormControl>
           <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
-          <Input type='role' focusBorderColor="lime"/>
+          <Input 
+          className="form-input" 
+          focusBorderColor="lime"
+          placeholder="List The Positions/Roles You Require"
+          name="requiredRoles"
+          type="text"
+          value={formState.requiredRoles}
+          onChange={handleChange}
+          />
         </FormControl>
 
         <FormControl>
           <FormLabel fontFamily='Righteous'>Perth Start Time (UTC/GMT +8 Hours)</FormLabel>
-          <Input type='time' focusBorderColor="lime"/>
+          <Input 
+          className="form-input" 
+          focusBorderColor="lime"
+          name="startTime"
+          type="time"
+          value={formState.startTime}
+          onChange={handleChange}
+          />
         </FormControl>
 
-        <Button backgroundColor='#00B51E' width='full'marginTop={4} fontFamily='Righteous'>Create Session</Button>
+        <Button 
+        backgroundColor='#00B51E'
+        _hover={{backgroundColor:'lime'}} 
+        width='full'marginTop={4} 
+        fontFamily='Righteous'
+        type="submit"
+        >
+          Create Session
+          </Button>
       </form>
+      {error && (
+        <div my='3' p='3' bg-='red' text='white'>
+        {error.message}
+        </div>
+      )}
+    </Box>
+    ) : (
+    <p>
+      You need to be logged in to create a session.  
+      <Link to="/login"> LOGIN</Link> or <Link to="/signup">SIGNUP</Link> to continue.
+    </p>
+    )}
     </Box>
   )
-}
+};
 
 export default SessionCreator;
 

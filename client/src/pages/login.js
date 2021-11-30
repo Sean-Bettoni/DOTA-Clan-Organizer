@@ -17,9 +17,8 @@ import React, { useState } from 'react';
 
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
-
+  const [formState, setFormState] = useState({ username: '', password: ''});
+  const [login, {error, data}] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -48,7 +47,7 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
+      username: '',
       password: '',
     });
   };
@@ -80,19 +79,19 @@ const Login = (props) => {
               </p>
             ) : (
               
-              <FormControl>
+              <FormControl isRequired>
               <form onSubmit={handleFormSubmit}>
 
               <Box marginY={8} textAlign='center'>
-                <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
+                <FormLabel fontFamily='Righteous'>Username</FormLabel>
                 <Input
                   className="form-input"
                   focusBorderColor="lime"
                   fontFamily='Righteous'
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
+                  placeholder="Your Username"
+                  name="username"
+                  type="username"
+                  value={formState.username}
                   onChange={handleChange}
                 />
                 

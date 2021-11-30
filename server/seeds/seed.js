@@ -7,10 +7,10 @@ db.once('open', async () => {
   try {
     // await SessionCard.deleteMany({});
     await User.deleteMany({});
+    await SessionCard.deleteMany({});
 
-    await SessionCard.create(sessionCardSeeds);
     await User.create(userSeeds);
-    
+    await SessionCard.create(sessionCardSeeds);    
   }
 
   catch (err) {

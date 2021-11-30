@@ -15,12 +15,12 @@ const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
   
   const cardInfo = useQuery(QUERY_GETSESSIONCARD);
 
-  if (!cardInfo) {
-    return <Box>
-    <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
-      There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
-    </Box>
-  }
+  // if (!cardInfo) {
+  //   return <Box>
+  //   <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
+  //     There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
+  //   </Box>
+  // }
 
 
   return (

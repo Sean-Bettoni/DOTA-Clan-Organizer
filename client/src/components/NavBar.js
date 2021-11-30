@@ -1,3 +1,5 @@
+// Removed Auth as it was stopping page rendering
+
 import React from 'react';
 import { Box, Flex, Button, Heading, Spacer } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
@@ -7,9 +9,9 @@ import Auth from '../utils/auth';
 
 const NavBar = () => {
  
-    const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
+  const logout = (event) => {
+  event.preventDefault();
+  Auth.logout();
   };
 
   return (
@@ -17,11 +19,11 @@ const NavBar = () => {
     <ColorModeSwitcher/>
     <Box textAlign='center' />
 
-          {Auth.loggedIn() ? (
-            <>
-              <Link to="/home">
+          {/* {Auth.loggedIn() ? (
+            <> */}
+              {/* <Link to="/home">
                 {Auth.login()}
-              </Link>
+              </Link> */}
               
               <Button 
                 justifySelf='flex-start' 
@@ -43,9 +45,9 @@ const NavBar = () => {
                 CREATE
               </Link> 
               </Button>
-            </>
+            {/* </>
           ) : (
-            <>
+            <> */}
             <Button 
                 justifySelf='flex-start' 
                 backgroundColor='transparent' 
@@ -67,8 +69,8 @@ const NavBar = () => {
                 SIGNUP
               </Link>
             </Button>
-            </>
-          )}
+            {/* </>
+          )} */}
         <Spacer/>
           <Heading justifyContent='flex-start' 
             fontSize='7xl' fontFamily='Fascinate Inline' 

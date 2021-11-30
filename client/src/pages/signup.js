@@ -19,9 +19,9 @@ import React, { useState } from 'react';
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: '',
-    email: '',
     password: '',
   });
+
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
@@ -78,36 +78,21 @@ return (
             <form onSubmit={handleFormSubmit}>
 
             <FormControl>
-              <FormLabel fontFamily='Righteous'>Display Name</FormLabel>
+              <FormLabel fontFamily='Righteous'>Username</FormLabel>
               <Input
                 className="form-input"
                 focusBorderColor="lime"
                 fontFamily='Righteous'
-                placeholder="Your Display Name"
+                placeholder="Your Name In The Clan"
                 name="username"
                 type="username"
                 value={formState.username}
                 onChange={handleChange}
               />
-              </FormControl>
+            </FormControl>
 
 
-              <FormControl>
-              <FormLabel fontFamily='Righteous'>Email Address</FormLabel>
-              <Input
-                className="form-input"
-                focusBorderColor="lime"
-                fontFamily='Righteous'
-                placeholder="Your email"
-                name="email"
-                type="email"
-                value={formState.email}
-                onChange={handleChange}
-              />
-              </FormControl>
-
-
-              <FormControl>
+            <FormControl>
               <FormLabel fontFamily='Righteous'>Password</FormLabel>
               <Input
                 className="form-input"
@@ -119,7 +104,7 @@ return (
                 value={formState.password}
                 onChange={handleChange}
               />
-              </FormControl>
+            </FormControl>
 
               <Button
                 _hover={{backgroundColor:'lime'}}

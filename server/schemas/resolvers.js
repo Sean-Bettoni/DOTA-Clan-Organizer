@@ -1,14 +1,17 @@
 const { AuthenticationError } = require('apollo-server-errors');
 const { SessionCard, User } = require('../models');
 const { signToken } = require("../utils/auth");
+// const sessionCardSeeds = require('../seeds/sessionCardSeeds.json');
+
 
 // Resolvers are functions that fulfills the queries defined in `typeDefs.js`
 // How blueprint will be fulfilled
 const resolvers = {
   Query: {
-    activeSessions: async () => {
+    sessionCards: async () => {
       // Get and return all documents from the SessionCard collection
       return await SessionCard.find({});
+      // return await sessionCardSeeds.find[{}];
     },
     
     user: async (parent, {username}) => {
@@ -18,8 +21,8 @@ const resolvers = {
 
   // Defining which mutations the client is allowed to make
   Mutation: {
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
       
       if (!user) {
         throw new AuthenticationError('Incorrect Details');
@@ -34,14 +37,15 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, { email, username, password }) => {
-      const user = await User.create({ email, username, password });
+    addUser: async (parent, { username, password }) => {
+      const user = await User.create({ username, password });
       const token = signToken(user);
       return { token, user };
     },
 
     createSessionCard: async (parent, { gameType, requiredRoles, startTime }) => {
-      return await SessionCard.create({ gameType, requiredRoles, startTime});
+      const card = await SessionCard.create({gameType, requiredRoles, startTime})
+      return card
     },
   },
 };
@@ -55,6 +59,5 @@ module.exports = resolvers;
 
 
 // createSessionCard: async (parent, { gameType, requiredRoles, startTime }) => {
-//   const card = await SessionCard.create({ gameType, requiredRoles, startTime });
-//   return card;
+//   return await SessionCard.create({ gameType, requiredRoles, startTime});
 // },

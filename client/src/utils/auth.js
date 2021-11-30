@@ -3,9 +3,9 @@ import decode from 'jwt-decode';
 
 class AuthService {
     // Returning user
-    getProfile() {
-        return decode(this.getToken());
-    }
+    // getProfile() {
+    //     return decode(this.getToken());
+    // }
 
     // Checking if user is logged in
     loggedIn() {
@@ -29,9 +29,14 @@ class AuthService {
     }
 
     // Saving users token to local storage
-    login() {
-        window.location.assign('/home');
-    }
+    // login() {
+    //     window.location.assign('/home');
+    // }
+    login(idToken) {
+        localStorage.setItem('id_token', idToken);
+        window.location.assign('/');
+      }
+
 
     // Removing users token from local storage
     logout() {
@@ -41,11 +46,3 @@ class AuthService {
 }
 
 export default new AuthService();
-
-// login(idToken) {
-//     localStorage.setItem('id_token', idToken);
-//     window.location.assign('/home');
-// }
-
-
-

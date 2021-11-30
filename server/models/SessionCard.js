@@ -1,3 +1,5 @@
+// Session card completed
+
 const { Schema, model } = require('mongoose');
 
 const SessionCardSchema = new Schema(

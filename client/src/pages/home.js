@@ -1,11 +1,15 @@
 import React from 'react';
-import { Flex, Grid, Box } from '@chakra-ui/react';
+// import { useParams } from 'react-router-dom';
+import { Flex } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_GETSESSIONCARD } from '../utils/queries';
 import ActiveSessionCard from '../components/activeSessionCard';
 
 
 const Home = () => {
+  // const { username: userParam } = useParams();
+
+
   const { loading, data } = useQuery(QUERY_GETSESSIONCARD);
   const sessionCard = data?.activeSessions || [];
 
@@ -32,8 +36,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
 
 
 

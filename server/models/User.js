@@ -1,3 +1,5 @@
+// User model completed
+
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
   
@@ -7,12 +9,6 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must be a valid email address!'],
   },
   password: {
     type: String,
@@ -37,3 +33,12 @@ userSchema.methods.isCorrectPassword = async function (password) {
 const User = model('User', userSchema);
 
 module.exports = User;
+
+
+// Removed email from user data
+// email: {
+//   type: String,
+//   required: true,
+//   unique: true,
+//   match: [/.+@.+\..+/, 'Must be a valid email address!'],
+// },

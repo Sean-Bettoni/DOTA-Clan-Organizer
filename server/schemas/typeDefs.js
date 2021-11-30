@@ -6,12 +6,12 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID
-    email: String!
     username: String!
     password: String!
   }
 
   type SessionCard {
+    _id: ID!
     gameType: String!
     requiredRoles: String!
     startTime: String!
@@ -23,13 +23,13 @@ const typeDefs = gql`
   }
 
   type Query {
-    activeSessions: [SessionCard]
+    sessionCards: [SessionCard]
     user(username: String!): User
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(email: String!, username: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
+    addUser(username: String!, password: String!): Auth
     createSessionCard(gameType: String!, requiredRoles: String!, startTime: String!): SessionCard
   }
 `;
@@ -37,3 +37,6 @@ const typeDefs = gql`
 // type Mutation is used for changing data
 
 module.exports = typeDefs;
+
+
+// createSessionCard(username: ID!, gameType: String!, requiredRoles: String!, startTime: String!): SessionCard

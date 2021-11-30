@@ -1,33 +1,27 @@
 [
     {
       "username": "drowranger",
-      "email": "drowranger123@mail.com",
       "password": "password"
     },
     {
       "username": "specsy",
-      "email": "specsy@mail.com",
       "password": "password"
     },
     {
       
       "username": "noahsark",
-      "email": "noahsark@mail.com",
       "password": "password"
     },
     {
       "username": "wubba",
-      "email": "wubba@mail.com",
       "password": "password"
     },
     {
         "username": "scarletwitch",
-        "email": "scarlet@mail.com",
         "password": "password"
     },
     {
       "username": "flaming123",
-      "email": "bob@mail.com",
       "password": "password"
     }
 ]

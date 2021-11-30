@@ -1,7 +1,9 @@
+// Connections completed
+
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/fathomless-dusk-47687',
+  process.env.MONGODB_URI || 'mongodb://localhost/dota-clan-organizer',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -11,3 +13,5 @@ mongoose.connect(
 );
 
 module.exports = mongoose.connection;
+
+// 'mongodb://localhost/fathomless-dusk-47687'

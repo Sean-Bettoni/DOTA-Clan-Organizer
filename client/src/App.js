@@ -1,18 +1,19 @@
 import React from 'react';
-import { ChakraProvider, Box } from '@chakra-ui/react';
-// 
+import { ChakraProvider, Box } from '@chakra-ui/react'; 
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 
 import NavBar from './components/NavBar';
 // import Footer from './components/Footer';
 // import ActiveSessions from './pages/ActiveSessions';
 import Home from './pages/home';
-import Login from './pages/login';
+import Login from './pagesupdated/login';
 import Signup from './pages/signup';
 import SessionCreator from './pages/sessionCreator';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
