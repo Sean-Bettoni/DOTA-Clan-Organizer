@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+// Mutation is used to insert/update/delete data
 
 export const LOGIN_USER = gql`
   mutation login($username: String!, $password: String!) {
@@ -24,7 +25,7 @@ export const ADD_USER = gql`
   }
 `;
 
-export const CREATE_SESSION_CARD = gql`
+export const ADD_SESSION_CARD = gql`
   mutation createSessionCard($gameType: String!, $requiredRoles: String!, $startTime: String!) {
     createSessionCard(gameType: $gameType, requiredRoles: $requiredRoles, startTime: $startTime){
         _id
@@ -34,4 +35,3 @@ export const CREATE_SESSION_CARD = gql`
       }
     }
 `;
-

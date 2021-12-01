@@ -54,7 +54,7 @@ function App() {
             <Login/>
           </Route>
 
-          <Route exact path="/home">
+          <Route exact path="/">
             <Home/>
           </Route>
 

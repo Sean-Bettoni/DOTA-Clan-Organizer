@@ -1,58 +1,43 @@
 import React from 'react';
-// import { useMutation } from '@apollo/client';
-import { Box, FormLabel, Form } from '@chakra-ui/react';
-// import { CREATE_SESSION_CARD } from '../utils/mutations';
+import { Box, FormLabel } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 
-import { useQuery } from '@chakra-ui/media-query';
-import { QUERY_GETSESSIONCARD } from '../utils/queries'
-
-
-
 // const ActiveSessionCard = ({ gameType, requiredRoles, startTime = [] }) => {
-const ActiveSessionCard = ({ gameType, requiredRoles, startTime }) => {
+const ActiveSessionCard = ({ sessionCards }) => {
   
-  const cardInfo = useQuery(QUERY_GETSESSIONCARD);
 
-  // if (!cardInfo) {
-  //   return <Box>
-  //   <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
-  //     There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
-  //   </Box>
-  // }
+
+
+  // const cardInfo = useQuery(QUERY_GETSESSIONCARD);
+  // In return field <textarea name='Game Type' value={cardInfo.gameType}></textarea>
+
+  if (!sessionCards.length) {
+    return <Box>
+    <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
+      There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
+    </Box>
+  }
 
 
   return (
-    <Box>
-      <Form>
-
-        <Box>
-        <FormLabel fontFamily='Righteous'>Game Type</FormLabel>
-          <textarea name='Game Type' value={cardInfo.gameType}>
-          </textarea>
-        </Box>
-
-        <Box>
-        <FormLabel fontFamily='Righteous'>Required Roles</FormLabel>
-          <textarea name='Required Roles' value={cardInfo.requiredRoles}>
-          </textarea>
-        </Box>
-
-        <Box>
-        <FormLabel fontFamily='Righteous'>Start Time</FormLabel>
-          <textarea name='Start Time' value={cardInfo.startTime}>
-          </textarea>
-        </Box>
-
-      </Form>
+    <Box fontFamily='Righteous'>
+      <h3>Upcoming Session</h3>
+        {sessionCards && 
+          sessionCards.map((cardInfo) => (
+            <Box key={cardInfo._id}>
+              <textarea>{cardInfo.gameType}</textarea>
+              <textarea>{cardInfo.requiredRoles}</textarea>
+              <textarea>{cardInfo.startTime}</textarea>
+            </Box>
+          
+          ))}
     </Box>
+
   )
 };
+
 export default ActiveSessionCard;
-
-
-
 
 
 

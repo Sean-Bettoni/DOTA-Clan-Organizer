@@ -56,8 +56,3 @@ module.exports = resolvers;
 // Equivalent to an API endpoint
 // Request to graphQL, in body of request
 
-
-
-// createSessionCard: async (parent, { gameType, requiredRoles, startTime }) => {
-//   return await SessionCard.create({ gameType, requiredRoles, startTime});
-// },

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 
+
 const NavBar = () => {
  
   const logout = (event) => {
@@ -30,10 +31,12 @@ const NavBar = () => {
                 backgroundColor='transparent' 
                 _hover={{backgroundColor:'lime'}} 
                 fontFamily='Fascinate Inline' 
-                padding='2' height='40px'
-                onClick={logout}>
-                LOGOUT
+                padding='2' height='40px'>
+              <Link to='/home'>    
+                HOME
+              </Link>
               </Button>
+             
               
               <Button 
                 justifySelf='flex-start' 
@@ -69,6 +72,20 @@ const NavBar = () => {
                 SIGNUP
               </Link>
             </Button>
+
+            <Button 
+                justifySelf='flex-start' 
+                backgroundColor='transparent' 
+                _hover={{backgroundColor:'lime'}} 
+                fontFamily='Fascinate Inline' 
+                padding='2' height='40px'
+                onClick={logout}>
+              <Link to="/login">  
+                LOGOUT
+              </Link>
+            </Button>
+
+
             {/* </>
           )} */}
         <Spacer/>

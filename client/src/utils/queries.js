@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
+// Query is used to fetch data
 
-export const QUERY_GETSESSIONCARD = gql `
-query getSessionCard($SessionCardId: ID!) {
-    activeSessions(SessionCardId: $SessionCardId) {
+export const QUERY_GETSESSIONCARDS = gql `
+query getSessionCards($SessionCardId: ID!) {
+    sessionCards(SessionCardId: $SessionCardId) {
         _id
         gameType
         requiredRoles
