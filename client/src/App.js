@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 // import Footer from './components/Footer';
 // import ActiveSessions from './pages/ActiveSessions';
 import Home from './pages/home';
-import Login from './pagesupdated/login';
+import Login from './pages/login';
 import Signup from './pages/signup';
 import SessionCreator from './pages/sessionCreator';
 
