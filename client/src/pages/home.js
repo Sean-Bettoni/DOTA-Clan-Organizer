@@ -1,6 +1,8 @@
 import React from 'react';
 // import { useParams } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
+
+
 import ActiveSessionCard from '../components/activeSessionCard';
 
 import { useQuery } from '@apollo/client';
@@ -15,6 +17,7 @@ const Home = () => {
 
   return (
     <Box>
+      
       <Box>
         {loading ? (
           <div>Loading...</div>
@@ -24,6 +27,7 @@ const Home = () => {
           />
         )}
       </Box>
+    
     </Box>
   );
 };

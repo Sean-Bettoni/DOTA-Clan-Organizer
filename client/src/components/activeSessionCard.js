@@ -1,39 +1,62 @@
 import React from 'react';
-import { Box, FormLabel } from '@chakra-ui/react';
+import { Flex, Stack, Heading, Box, Grid, FormLabel } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
+import backgroundIMG from '../photos/dotaHeroesTile2.png'
 
 // const ActiveSessionCard = ({ gameType, requiredRoles, startTime = [] }) => {
 const ActiveSessionCard = ({ sessionCards }) => {
-  
-
-
 
   // const cardInfo = useQuery(QUERY_GETSESSIONCARD);
   // In return field <textarea name='Game Type' value={cardInfo.gameType}></textarea>
 
+  
   if (!sessionCards.length) {
-    return <Box>
-    <FormLabel fontFamily='Fascinate Inline' fontSize='5xl' textAlign='center'>
-      There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'>CREATE</Link> one</FormLabel>
+    return <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
+    <Box
+    width='full'
+    maxWidth='500px'
+    borderRadius={4}
+    borderWidth={4} 
+    padding='5'
+    style={{backgroundImage: `url(${backgroundIMG})`}}
+    // bgColor='#A0A0A0'
+    opacity='0.75'
+    textAlign='center'
+    >
+      {/* <Image 
+      src='../../photos/dotaIconSmall.png'
+      mx='auto'
+      my={6}
+      /> */}
+    <FormLabel fontFamily='Righteous' fontSize='5xl' textAlign='center'>
+      There are currently no <br></br> upcomming sessions, <br></br> Please <Link to ='/sessioncreator'><u>CREATE</u></Link> one</FormLabel>
     </Box>
+    </Flex>
   }
 
 
   return (
-    <Box fontFamily='Righteous'>
-      <h3>Upcoming Session</h3>
-        {sessionCards && 
-          sessionCards.map((cardInfo) => (
-            <Box key={cardInfo._id}>
-              <textarea>{cardInfo.gameType}</textarea>
-              <textarea>{cardInfo.requiredRoles}</textarea>
-              <textarea>{cardInfo.startTime}</textarea>
+    <Flex
+    align={'center'}
+    justify={'center'}
+    >
+      <Stack>
+        {sessionCards.map((sessionCards) => (
+          <Grid
+          templateColumns='repeat(5, 1fr)'
+          gap={5} 
+          key={sessionCards._id}
+          >
+            <Box>
+              <Heading textAlign={'flex-start'}>{sessionCards.gameType}</Heading>
+              <h3>{sessionCards.requiredRoles}</h3>
+                <h3>{sessionCards.startTime}</h3>
             </Box>
-          
-          ))}
-    </Box>
-
+          </Grid>  
+        ))}
+      </Stack>
+    </Flex>
   )
 };
 

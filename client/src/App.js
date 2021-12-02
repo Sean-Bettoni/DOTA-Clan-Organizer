@@ -7,8 +7,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 import NavBar from './components/NavBar';
-// import Footer from './components/Footer';
-// import ActiveSessions from './pages/ActiveSessions';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';

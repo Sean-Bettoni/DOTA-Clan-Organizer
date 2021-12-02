@@ -75,7 +75,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! Taking you{' '}
-                <Link to="/home">to the homepage.</Link>
+                <Link to='/'>to the homepage.</Link>
               </p>
             ) : (
               

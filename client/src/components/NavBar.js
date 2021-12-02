@@ -21,8 +21,8 @@ const NavBar = () => {
     <Box textAlign='center' />
 
           {/* {Auth.loggedIn() ? (
-            <> */}
-              {/* <Link to="/home">
+            <>
+              <Link to="/home">
                 {Auth.login()}
               </Link> */}
               
@@ -32,7 +32,7 @@ const NavBar = () => {
                 _hover={{backgroundColor:'lime'}} 
                 fontFamily='Fascinate Inline' 
                 padding='2' height='40px'>
-              <Link to='/home'>    
+              <Link to='/'>    
                 HOME
               </Link>
               </Button>
@@ -48,19 +48,24 @@ const NavBar = () => {
                 CREATE
               </Link> 
               </Button>
-            {/* </>
-          ) : (
-            <> */}
-            <Button 
+
+
+              <Button 
                 justifySelf='flex-start' 
                 backgroundColor='transparent' 
                 _hover={{backgroundColor:'lime'}} 
                 fontFamily='Fascinate Inline' 
-                padding='2' height='40px'>
-              <Link to="/login">
-                LOGIN
+                padding='2' height='40px'
+                onClick={logout}>
+              <Link to="/login">  
+                LOGOUT
               </Link>
-            </Button>
+              </Button>
+
+
+            {/* </>
+          ) : (
+            <> */}
 
             <Button 
                 justifySelf='flex-start' 
@@ -78,28 +83,34 @@ const NavBar = () => {
                 backgroundColor='transparent' 
                 _hover={{backgroundColor:'lime'}} 
                 fontFamily='Fascinate Inline' 
-                padding='2' height='40px'
-                onClick={logout}>
-              <Link to="/login">  
-                LOGOUT
+                padding='2' height='40px'>
+              <Link to="/login">
+                LOGIN
               </Link>
             </Button>
 
 
+
             {/* </>
           )} */}
-        <Spacer/>
-          <Heading justifyContent='flex-start' 
-            fontSize='7xl' fontFamily='Fascinate Inline' 
-            paddingRight='10%' 
-            textDecorationLine='underline'>
-            Circle Of Life Clan Website
-          </Heading>
-        <Spacer/>
+
+
+            <Spacer/>
+              <Heading 
+                // justifyContent='flex-start'
+                textAlign='center'
+                paddingRight='20%' 
+                fontSize='7xl' 
+                fontFamily='Fascinate Inline' 
+                // paddingRight='10%' 
+                textDecorationLine='underline'>
+                Circle Of Life Clan Website
+              </Heading>
+            <Spacer/>
         <Box justifySelf='flex-end'p='10px'/>
 
-    </Flex>
-  );
+      </Flex>
+      );
 };
 
 export default NavBar;

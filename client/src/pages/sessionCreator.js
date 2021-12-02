@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_SESSION_CARD } from '../utils/mutations';
+import { QUERY_GETSESSIONCARDS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { 
@@ -59,15 +60,29 @@ const SessionForm = () => {
   });
 
   // Set up our mutation with an option to handle errors
-  const [createSessionCard, {error}] = useMutation(ADD_SESSION_CARD);
+  const [createSessionCard, {error}] = useMutation(ADD_SESSION_CARD, {
+    update(cache, { data: { createSessionCard } }) {
+      try {
+        const { sessionCards } = cache.readQuery({ query: QUERY_GETSESSIONCARDS});
 
+        cache.writeQuery({
+          query: QUERY_GETSESSIONCARDS,
+          data: { sessionCards: [createSessionCard, ...sessionCards]},
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
+
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     // On form submit, perform mutation and pass in form data object as arguments
     // It is important that the object fields match the defined parameters in `ADD_SESSION_CARD` mutation
     try {
-      const { data } = createSessionCard({
+      const {data} = await createSessionCard({
         variables: { ...formState },
       });
 
@@ -124,6 +139,7 @@ const SessionForm = () => {
           focusBorderColor="lime"
           name="startTime"
           type="time"
+          cursor='pointer'
           value={formState.startTime}
           onChange={handleChange}
           />
@@ -146,9 +162,9 @@ const SessionForm = () => {
       )}
     </Box>
     ) : (
-    <Box marginY={8} textAlign='center'>
+    <Box marginY={8} textAlign='center'fontFamily='Righteous'>
       You need to be logged in to create a session.  
-      <Link to="/login"> LOGIN</Link> or <Link to="/signup">SIGNUP</Link> to continue.
+      <Link to="/login"> <u>LOGIN</u></Link> or <Link to="/signup"><u>SIGNUP</u></Link> to continue.
     </Box>
     )}
     </Box>
