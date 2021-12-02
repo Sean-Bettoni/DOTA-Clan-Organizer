@@ -15,6 +15,7 @@
   There are no instillation instructions for this project.
   ### Usage:
   This application can be accessed by a heroku live link in the future.
+  ![dota-clan-organizer-login-screenshot](https://user-images.githubusercontent.com/82442926/144454767-5ae5dd79-9e0f-411a-a549-9b68b897bc65.png)
   ### License:
   This project is licensed under:
   MIT_License
