@@ -1,1 +1,1 @@
-C:\Users\Sean\Desktop\UWA\Assignments\readme-generator\Generated-README.md
+[Generated-README.md](https://github.com/Sean-Bettoni/DOTA-Clan-Organizer/files/7643204/Generated-README.md)
